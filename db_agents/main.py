@@ -18,7 +18,7 @@ prompt = ChatPromptTemplate(
     input_variables=["input"],
     messages=[
         HumanMessagePromptTemplate.from_template("{input}"),
-        ## Consider the scratchpad as a very simple version of memory.
+        ## Consider the scratchpad as a very simple version of memory
         MessagesPlaceholder(variable_name="agent_scratchpad"),
     ]
 )

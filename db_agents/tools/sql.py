@@ -4,9 +4,11 @@ conn = sqlite3.connect('db.sqlite')
 
 def run_sqlite_query(query):
     c = conn.cursor()
-    c.execute(query)
-    return c.fetchall()
-
+    try:
+        c.execute(query)
+        return c.fetchall()
+    except sqlite3.OperationalError as e:
+        return f"The following error occured: {str(e)}"
 
 
 run_query_tool = Tool.from_function(
