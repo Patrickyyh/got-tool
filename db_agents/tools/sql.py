@@ -45,7 +45,7 @@ def describe_tables(table_names):
 
 class DescribeTablesSchema(BaseModel):
     tables_names: List[str]
-    
+
 
 describe_tables_tool = Tool.from_function(
     name = "describe_tables",
