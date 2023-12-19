@@ -1,6 +1,6 @@
 from langchain.document_loaders import PyPDFLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-
+from app.chat.vector_stores.pinecone import vectorstore
 
 def create_embeddings_for_pdf(pdf_id: str, pdf_path: str):
     """
@@ -20,13 +20,18 @@ def create_embeddings_for_pdf(pdf_id: str, pdf_path: str):
     ## 1. Create a TextSpliter
     text_splitter = RecursiveCharacterTextSplitter(
         chunk_size=500,
-        chunk_overlap=100
+        chunk_overlap=100,
+        is_separator_regex= False,
     )
 
-    ## 2. Create a PDFLoader
+    ## 2. Create a PDFLoader and use the splitter to split PDF into the text chunks.
     loader = PyPDFLoader(pdf_path)
     docs  = loader.load_and_split(text_splitter)
-    print(docs)
+    ##print(docs)
+
+    ## 3. Add the docs into the vector stores
+    vectorstore.add_documents(docs)
+
 
 
     pass
