@@ -29,7 +29,7 @@ def create_embeddings_for_pdf(pdf_id: str, pdf_path: str):
     docs  = loader.load_and_split(text_splitter)
     ##print(docs)
 
-    #3. update the metadata to uniquely identify the vector by pdf's id. 
+    #3. update the metadata to uniquely identify the vector by pdf's id.
     for doc in docs:
         doc.metadata = {
             "page": doc.metadata["page"],
@@ -39,7 +39,7 @@ def create_embeddings_for_pdf(pdf_id: str, pdf_path: str):
 
     ## 3. Add the docs into the vector stores
     vectorstore.add_documents(docs)
-
+    
 
 
 
