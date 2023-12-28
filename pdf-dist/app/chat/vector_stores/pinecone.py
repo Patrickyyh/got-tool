@@ -13,6 +13,8 @@ vectorstore = Pinecone.from_existing_index(
 )
 def build_retriever(chat_args):
     ## define the search_kwargs:
+    ## We would like to filter out the the document belongs to
+    ## the specific pdf over here
     search_kwargs = {"filter" : {"pdf_id":chat_args.pdf_id}}
     return vectorstore.as_retriever(search_kwargs = search_kwargs)
 

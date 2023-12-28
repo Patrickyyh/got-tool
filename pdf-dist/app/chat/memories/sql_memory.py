@@ -7,9 +7,12 @@ from app.web.api import (
     add_message_to_conversation
 )
 
+# This function inherit the BaseChatMessageHistory
 class SqlMessageHistory(BaseChatMessageHistory, BaseModel):
     conversation_id: str
 
+
+    ## implement the function provided by the abstraction function 
     @property
     def messages(self):
         return get_messages_by_conversation_id(self.conversation_id)
